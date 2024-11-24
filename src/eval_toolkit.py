@@ -20,7 +20,6 @@ def get_args():
                         )
     parser.add_argument('--task', type=int, default=2)  # 1: Fwbeta score, 2: Masked IoU
     parser.add_argument('--num_classes', type=int, default=8)
-    parser.add_argument('--visualise', type=bool, default=False)
     parser.add_argument('--save_res', type=bool, default=False)
     parser.add_argument('--dest_path', type=str,
                         default="..."
