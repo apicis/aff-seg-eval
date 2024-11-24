@@ -47,24 +47,25 @@ conda create -n affordance_segmentation python=3.8
 conda activate affordance_segmentation
     
 # Install libraries
-pip install opencv-python onnx-tool numpy tqdm scipy pandas
+pip install opencv-python numpy tqdm scipy pandas sklearn
 ```
 
 ## Running demo <a name="demo"></a>
 
-Use the images in the folder *src/test_dir* or try with your own images. The folder structure is *DATA_DIR/rgb*. 
-
-To run the evaluation toolkit and visualise the performance measure value:
+To run the evaluation toolkit and visualise the performance measure value (except for background):
 
 ```
-python src/eval_aff_seg.py --gpu_id=GPU_ID --model_name=MODEL_NAME --train_dataset=TRAIN_DATA --data_dir=DATA_DIR --checkpoint_path=CKPT_PATH --save_res=True --dest_dit=DEST_DIR
+python src/eval_toolkit.py --pred_dir=PRED_DIR --ann_dir=ANN_DIR --task=TASK --num_classes=NUM_CLASSES
 ```
 
-* *DATA_DIR*: directory where data are stored
-* *TRAIN_DATA*: name of the training dataset
-* *DEST_DIR*: path to the destination directory. This flag is considered only if you save the predictions ```--save_res=True``` or the overlay visualisation ```--save_overlay=True```. Results are automatically saved in *DEST_DIR/pred*, overlays in *DEST_DIR/vis*.
+* *PRED_DIR*: directory where predictions are stored
+* *ANN_DIR*: directory where annotations are stored
+* *TASK*: evaluation type: 1 for $F^w_{\beta}$, 2 for Jaccard index (IoU)
+* *NUM_CLASSES*: number of output segmentation classes (background included)
+* *SAVE_RES*: whether to save results or not
+* *DEST_PATH*: path to destination .csv file (considered only if *SAVE_RES*=True)
 
-You can test if the model has the same performance by running inference on the images provided in *src/test_dir/rgb* and checking if the output is the same of *test_dir/pred* .
+You can evaluate also from the .csv file using `eval_from_file.py` script.
 
 
 ## Contributing <a name="contributing"></a>
