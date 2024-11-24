@@ -67,7 +67,7 @@ python src/eval_toolkit.py --pred_dir=PRED_DIR --ann_dir=ANN_DIR --task=TASK --n
 * *SAVE_RES*: whether to save results or not
 * *DEST_PATH*: path to destination .csv file (considered only if *SAVE_RES*=True)
 
-You can evaluate also from the .csv file using `eval_from_file.py` script.
+You can evaluate also from the .csv file using `eval_from_file.py` script. We realease also [available models results](/assets/results) in .csv file. 
 
 
 ## Contributing <a name="contributing"></a>
