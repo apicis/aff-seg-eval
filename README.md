@@ -7,6 +7,8 @@ distance to the annotated mask.
 
 [[arXiv](https://arxiv.org/abs/2409.01814)]
 [[webpage](https://apicis.github.io/aff-seg/)]
+[[models code](https://github.com/apicis/aff-seg)]
+[[trained models](https://doi.org/10.5281/zenodo.13627870)]
 
 
 ## Table of Contents
