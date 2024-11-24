@@ -20,7 +20,6 @@ def get_args():
                         )
     parser.add_argument('--task', type=int, default=2)  # 1: Fwbeta score, 2: Masked IoU
     parser.add_argument('--num_classes', type=int, default=8)
-    parser.add_argument('--dataset', type=str, default="UMD")
     parser.add_argument('--visualise', type=bool, default=False)
     parser.add_argument('--save_res', type=bool, default=False)
     parser.add_argument('--dest_path', type=str,
@@ -39,16 +38,12 @@ if __name__ == '__main__':
     save_res = args.save_res
     dest_path = args.dest_path
     num_classes = args.num_classes
-    dataset = args.dataset
-    visualise = args.visualise
 
     print("==============")
     print("pred_dir: ", pred_dir)
     print("ann_dir: ", ann_dir)
     print("task: ", task)
     print("num_classes: ", num_classes)
-    print("dataset: ", dataset)
-    print("visualise: ", visualise)
     print("save_res: ", save_res)
     print("dest_path: ", dest_path)
     print("==============")
@@ -70,21 +65,6 @@ if __name__ == '__main__':
         pred = cv2.imread(os.path.join(pred_dir, filename), cv2.IMREAD_GRAYSCALE)
         ann = cv2.imread(os.path.join(ann_dir, filename), cv2.IMREAD_GRAYSCALE)
 
-        if visualise:
-            colormap1 = np.zeros([pred.shape[0], pred.shape[1], 3])
-            colormap1[pred == 1] = np.array([0, 0, 255])
-            colormap1[pred == 2] = np.array([0, 255, 0])
-            colormap1[pred == 3] = np.array([255, 0, 0])
-            colormap1[pred == 4] = np.array([255, 255, 255])
-
-            colormap2 = np.zeros([pred.shape[0], pred.shape[1], 3])
-            colormap2[ann == 1] = np.array([0, 0, 255])
-            colormap2[ann == 2] = np.array([0, 255, 0])
-            colormap2[ann == 3] = np.array([255, 0, 0])
-            colormap2[ann == 4] = np.array([255, 255, 255])
-            cv2.imshow("Predictions", np.hstack([colormap1, colormap2]))
-            cv2.waitKey(0)
-
         # Save per class result
         for c in range(0, num_classes):
             # Compute measures
@@ -104,7 +84,7 @@ if __name__ == '__main__':
 
                 if np.count_nonzero(ann_tmp) >= 1:
                     # Compute Fwbeta
-                    B, Et, EA, R, P, TPw, FPw, FNw, Q = weighted_f_beta_score(ann_tmp, pred_tmp, visualise=False)
+                    B, Et, EA, R, P, TPw, FPw, FNw, Q = weighted_f_beta_score(ann_tmp, pred_tmp)
                 else:
                     TPw, FPw, FNw, Q = [-1, -1, -1, -1]
 
