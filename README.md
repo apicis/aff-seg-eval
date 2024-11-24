@@ -1,1 +1,1 @@
-# aff-seg-eval
+# Evaluation toolkit for affordance segmentation
