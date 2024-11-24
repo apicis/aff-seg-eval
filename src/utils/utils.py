@@ -5,11 +5,11 @@ import pandas as pd
 
 
 def compute_IoU(cm):
-    '''
+    """
     Adapted from:
         https://github.com/davidtvs/PyTorch-ENet/blob/master/metric/iou.py
         https://github.com/tensorflow/tensorflow/blob/v2.3.0/tensorflow/python/keras/metrics.py#L2716-L2844
-    '''
+    """
 
     sum_over_row = cm.sum(axis=0)
     sum_over_col = cm.sum(axis=1)
@@ -24,6 +24,13 @@ def compute_IoU(cm):
 
 
 def gaussian_filter(kernel_size, sigma=5, muu=0):
+    """ Creates a gaussian filter with specified kernel size and standard deviation.
+
+    :param kernel_size: size of the kernel of the gaussian filter
+    :param sigma: standard deviation
+    :param muu: mean
+    :return: gaussian filter
+    """
     # Initializing value of x,y as grid of kernel size in the range of kernel size
     start = end = (kernel_size - 1) // 2
     x, y = np.meshgrid(np.linspace(-start, end, kernel_size), np.linspace(-start, end, kernel_size))
@@ -51,7 +58,7 @@ def weighted_f_beta_score(gt, pred, beta=1.0, visualise=False):
     if np.min(pred) < 0.0 or np.max(pred) > 1.0:
         raise ValueError("'candidate' values must be inside range [0 - 1]")
 
-    if gt.dtype in [np.bool, np.bool_, np.bool8]:
+    if gt.dtype in [bool]:
         gt_mask = gt
         not_gt_mask = np.logical_not(gt_mask)
         gt = np.array(gt, dtype=float)
@@ -145,6 +152,12 @@ def weighted_f_beta_score(gt, pred, beta=1.0, visualise=False):
 
 
 def get_data_frame(num_samples, num_classes):
+    """ Creates a dataframe of specified number of samples and number of affordance classes.
+
+    :param num_samples: how many rows in the dataframe
+    :param num_classes: how many affordance classes
+    :return: dataframe
+    """
     cols_headers = ['Image']
 
     for c in range(0, num_classes):
