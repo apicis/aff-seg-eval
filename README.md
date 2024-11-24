@@ -49,7 +49,7 @@ conda create -n affordance_segmentation python=3.8
 conda activate affordance_segmentation
     
 # Install libraries
-pip install opencv-python numpy tqdm scipy pandas sklearn
+pip install opencv-python numpy tqdm scipy pandas scikit-learn
 ```
 
 ## Running demo <a name="demo"></a>
