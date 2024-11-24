@@ -6,7 +6,7 @@ import numpy as np
 
 from sklearn.metrics import confusion_matrix
 from tqdm import tqdm
-from src.utils.utils import get_data_frame, weighted_f_beta_score
+from utils.utils import get_data_frame, weighted_f_beta_score
 
 
 def get_args():
